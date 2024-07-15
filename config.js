@@ -1,0 +1,1 @@
+export const api = "https://stepout-backend-hqck.onrender.com/"
