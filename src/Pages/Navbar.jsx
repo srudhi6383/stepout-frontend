@@ -2,17 +2,18 @@
 import {
   Box,
   Flex,
-  Link,
   Button,
   Text,
   Spacer,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { NavLink, Link as RouterLink, useNavigate } from 'react-router-dom';
+import { NavLink, Navigate, Link as RouterLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const Main_url = import.meta.env.VITE_API_URL;
 const Navbar = ({ rendernav }) => {
+  const tost = useToast()
   const bg = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,8 +27,17 @@ const Navbar = ({ rendernav }) => {
     try {
       const result = await axios.post(`${Main_url}/user/api/logout`, {}, { withCredentials: true });
       localStorage.removeItem('Railway_auth');
-      <NavLink to='/login'/>
-      window.location.reload()
+      tost({
+        title: 'Logout Successfull.',
+        description: "You are now successfully Logout.",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      setTimeout(()=>{
+        navigate('/')
+         window.location.reload()
+      },3000)
       
     } catch (error) {
       console.error('Error logging out:', error);

@@ -7,7 +7,6 @@ import {
     Text,
     VStack,
     HStack,
-    Spacer,
     Modal,
     ModalOverlay,
     ModalContent,
@@ -33,11 +32,13 @@ const HomePage = () => {
     });
     const [bookingloading,setbookingloading] = useState(false)
     const [isOpen, setIsOpen] = useState(false);
+    const [firstrender,setfirstrender] = useState(true)
     const [selectedTrain, setSelectedTrain] = useState(null);
     const [noOfSeats, setNoOfSeats] = useState(1);
     const navigate = useNavigate()
     const handleSearch = () => {
         setloading(true)
+        setfirstrender(false)
         async function get_train() {
             const { from, to } = searchQuery;
             const params = {};
@@ -76,7 +77,7 @@ const HomePage = () => {
             setbookingloading(true)
             try {
                 
-                const data = await axios.post(`${Main_url}/train/api/trains/${selectedTrain?._id}/book`,{},{ withCredentials: true })
+                const data = await axios.post(`${Main_url}/train/api/trains/${selectedTrain?._id}/book`,{no_of_seats:noOfSeats},{ withCredentials: true })
                 const result = data.data
                 tost({
                     title: 'Seat Booked.',
@@ -166,15 +167,20 @@ const HomePage = () => {
                         borderRadius="md"
                         onClick={handleSearch}
                     >
-                        Search Trains
+                        {(!searchQuery.to && !searchQuery.from)?'Search all Trains':'Search Trains'}
                     </Button>
-                    {train_data.length > 0 && (
+                    {train_data.length > 0 &&!firstrender && !loading && (
                         <VStack spacing={4} mt={4}>
                             {train_data.map((train, index) => (
                                 <TrainInfoCard key={index} train={train} onBookClick={()=>onOpen(train)} />
                             ))}
                         </VStack>
                     )}
+                    {
+                        train_data.length==0 && !firstrender && !loading&&(
+                            <h3>No Train Found in this route</h3>
+                        )
+                    }
                 </VStack>
             </Flex>
 

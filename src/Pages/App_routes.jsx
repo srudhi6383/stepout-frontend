@@ -18,6 +18,7 @@ function App_routes({rendernav,setrendernav}) {
                 </Private_Route>
             }/>
             <Route path='/admin' element={<AdminPage/>}/>
+            <Route path='*' element={<HomePage/>}/>
         </Routes>
 
   )
