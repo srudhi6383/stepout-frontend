@@ -25,13 +25,15 @@ const LoginSignupPage = ({rendernav,setrendernav}) => {
     username: '',
     email:'',
     password: '',
-    confirmPassword: '', 
+    confirmPassword: '', // Added for signup
   });
   const navigate = useNavigate();
   const [loading,setloading] = useState(false)
   const bg = useColorModeValue('white', 'gray.800');
+  const borderColor = useColorModeValue('gray.200', 'gray.700');
 
   const handleSignup = async() => {
+    // Handle signup logic here
     if(!loginInfo.username || !loginInfo.password || !loginInfo.confirmPassword || !(loginInfo.password===loginInfo.confirmPassword)){
       alert('Please Provied all details')
       return
@@ -221,7 +223,7 @@ const LoginSignupPage = ({rendernav,setrendernav}) => {
                   username: '',
                   email:'',
                   password: '',
-                  confirmPassword: '', 
+                  confirmPassword: '', // Added for signup
                 })
             }}
             fontSize="md"

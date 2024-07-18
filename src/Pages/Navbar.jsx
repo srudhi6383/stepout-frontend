@@ -2,6 +2,7 @@
 import {
   Box,
   Flex,
+  Link,
   Button,
   Text,
   Spacer,

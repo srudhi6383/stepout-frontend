@@ -7,6 +7,7 @@ import {
     Text,
     VStack,
     HStack,
+    Spacer,
     Modal,
     ModalOverlay,
     ModalContent,

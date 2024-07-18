@@ -9,6 +9,7 @@ function App() {
   const [rendernav, setrendernav] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // Automatically open the message on mount
   useEffect(() => {
     onOpen();
   }, []);
@@ -21,7 +22,7 @@ function App() {
           top="0"
           left="0"
           right="0"
-          bg="ylue.200"
+          bg="blue.200"
           p={3}
           textAlign="center"
           borderBottomWidth="1px"
@@ -29,7 +30,7 @@ function App() {
           zIndex={10}
         >
           <Text fontSize="md">
-                   Thanks
+            The server might take up to 5 minutes to load. Thanks
           </Text>
           <Button
             size="sm"
@@ -37,7 +38,7 @@ function App() {
             onClick={onClose}
             ml={4}
           >
-            Back
+            Dismiss
           </Button>
         </Box>
       )}

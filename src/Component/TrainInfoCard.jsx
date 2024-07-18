@@ -8,12 +8,18 @@ import {
   VStack,
   HStack,
   Spacer,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
 } from '@chakra-ui/react';
-
+import { useState } from 'react';
 
 const formatDateTime = (isoString) => {
   const date = new Date(isoString);
-  return date.toLocaleString(); 
+  return date.toLocaleString(); // Formats to "MM/DD/YYYY, HH:MM:SS AM/PM"
 };
 
 const TrainInfoCard = ({ train, onBookClick }) => {
